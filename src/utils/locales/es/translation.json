@@ -1,0 +1,41 @@
+{
+    "health-check": "🎆 ¡El servicio esta corriendo ahora! 🎆",
+    "not-found": "Esta ruta no existe dentro del servidor.",
+    "api": {
+        "error-system": "Lo sentimos tenemos algunos problemas en nuestros servicios, por favor intente de nuevo más tarde.",
+        "error-image-file": "Lo sentimos, el archivo que estas subiendo no es una imagen.",
+        "error-authentication": "Lo sentimos, no te has autenticado aún",
+        "error-expiration": "Lo sentimos, se a expirado tu sesión.",
+        "guest": {
+            "confirm-ceremony": {
+                "success": "Se ha actualizado la asistencia a la ceremonia."
+            },
+            "confirm-party": {
+                "success": "Se ha actualizado la asistencia a la fiesta."
+            },
+            "remove-guest": {
+                "success": "Se ha eliminado el invitado."
+            },
+            "count": {
+                "success": "Esta es la cantidad de invitados."
+            }
+        },
+        "family": {
+            "get-family": {
+                "success": "Esta es la familia consultada."
+            },
+            "get-families": {
+                "success": "Estas son las familias."
+            },
+            "create": {
+                "success": "Se ha creado una nueva familia."
+            },
+            "add-guest": {
+                "success": "Se ha agregado un nuevo invitado a la familia."
+            },
+            "update": {
+                "success": "Se ha actualizado el nombre de la familia familia."
+            }
+        }
+    }
+}

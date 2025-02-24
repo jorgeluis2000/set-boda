@@ -1,0 +1,15 @@
+/node_modules
+/data
+.git
+.gitignore
+docker-compose.*.yml
+docker-compose.yml
+swagger.yml
+script.ts
+/dist
+.env
+.env.*
+.env*.local
+README.md
+swagger.yaml
+index.html

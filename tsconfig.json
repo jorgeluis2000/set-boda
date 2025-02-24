@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "NodeNext",
+    "esModuleInterop": true,
+    "moduleResolution": "NodeNext",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "paths": {
+      "@myapp-app/*": ["./src/app/*"],
+      "@myapp-config/*": ["./src/config/*"],
+      "@myapp-utils/*": ["./src/utils/*"]
+    }
+  },
+  "include": ["src/**/*", "script.ts"],
+  "exclude": ["node_modules", "prisma", "dist", "script.ts", "db.constant.ts"]
+}
