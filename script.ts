@@ -5,10 +5,16 @@ const prisma = new PrismaClient();
 
 async function main() {
   GUESTS.map(async (guest) => {
-    const new_guest = await prisma.guestFamily.create({
-      data: { ...guest },
-    });
-    console.log("🚀 ~ GUESTS.map ~ new_guest:", new_guest);
+    try {
+      const new_guest = await prisma.guestFamily.create({
+        data: { ...guest },
+      });
+      console.log("🚀 new_guest:", new_guest);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log("❌ error:", error.message);
+      }
+    }
   });
 }
 
