@@ -26,5 +26,5 @@ model Guest {
   isVegan         Boolean     @default(false)
   person          Json
   idGuestFamily   Int
-  guestFamily     GuestFamily @relation(fields: [idGuestFamily], references: [id])
+  guestFamily     GuestFamily @relation(fields: [idGuestFamily], references: [id], onDelete: Cascade)
 }

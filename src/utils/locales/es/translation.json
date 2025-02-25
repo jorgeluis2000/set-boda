@@ -34,7 +34,7 @@
                 "success": "Se ha agregado un nuevo invitado a la familia."
             },
             "update": {
-                "success": "Se ha actualizado el nombre de la familia familia."
+                "success": "Se ha actualizado el nombre de la familia."
             }
         }
     }
