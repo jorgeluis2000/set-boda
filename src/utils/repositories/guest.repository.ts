@@ -46,12 +46,16 @@ export default class GuestRepository {
     secondName,
     firstSurname,
     secondSurname,
+    confirmCeremony,
+    confirmParty,
   }: TUpdateGuestProps) {
     const result = await this.connection.guest.update({
       where: {
         id,
       },
       data: {
+        confirmCeremony,
+        confirmParty,
         person: {
           firstName,
           secondName,
