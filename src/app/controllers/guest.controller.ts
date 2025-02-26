@@ -4,17 +4,52 @@ import {
   NormalHttpStatus,
 } from "@myapp-utils/constants/http-status.constant";
 import { buildMessageBusinessError } from "@myapp-utils/errors/build-error-message";
+import { maxPages } from "@myapp-utils/functions/math.function";
 import type {
   IConfirmCeremonyRequest,
   IConfirmPartyRequest,
+  ICountGuestRequest,
+  IListGuestRequest,
   IRemoveGuestRequest,
   IUpdateGuestRequest,
 } from "@myapp-utils/interfaces/request/guest-request.type";
-import type { ResponseBusiness } from "@myapp-utils/types/response.type";
+import type {
+  ResponseBusiness,
+  ResponseListBusiness,
+} from "@myapp-utils/types/response.type";
 import type { Request, Response } from "express";
 
 export default class GuestController {
   constructor(private readonly guestUseCase: GuestUseCase) {}
+
+  public async getGuests(
+    req: Request,
+    res: Response<ResponseBusiness<ResponseListBusiness>>,
+  ) {
+    const data = req as IListGuestRequest;
+    const { nameFamily, limit, page } = data.query;
+    try {
+      const count = await this.guestUseCase.count({ nameFamily });
+      const result = await this.guestUseCase.finMany({
+        nameFamily,
+        limit: Number(limit),
+        page: Number(page),
+      });
+      res.status(NormalHttpStatus.OK).json({
+        ok: true,
+        http_code: HttpStatus.OK,
+        message: req.t("api.family.get-families.success"),
+        data: {
+          count,
+          currentPage: Number(page),
+          maxPages: maxPages(count, Number(limit)),
+          list: result,
+        },
+      });
+    } catch (error) {
+      buildMessageBusinessError(error as Error, req, res);
+    }
+  }
 
   public async confirmCeremony(req: Request, res: Response<ResponseBusiness>) {
     const data = req as IConfirmCeremonyRequest;
@@ -90,8 +125,10 @@ export default class GuestController {
   }
 
   public async countGuests(req: Request, res: Response<ResponseBusiness>) {
+    const data = req as ICountGuestRequest;
+    const { nameFamily } = data.query;
     try {
-      const result = await this.guestUseCase.count();
+      const result = await this.guestUseCase.count({ nameFamily });
       res.status(NormalHttpStatus.OK).json({
         ok: true,
         http_code: HttpStatus.OK,

@@ -10,6 +10,7 @@ const guestRepository = new GuestRepository(prisma);
 const guestUseCase = new GuestUseCase(guestRepository);
 const guestController = new GuestController(guestUseCase);
 
+GuestRouter.get("", guestController.getGuests.bind(guestController));
 GuestRouter.get("/count", guestController.countGuests.bind(guestController));
 GuestRouter.get(
   "/count/confirm-party",

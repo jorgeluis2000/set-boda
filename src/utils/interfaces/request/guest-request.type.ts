@@ -31,3 +31,17 @@ export interface IRemoveGuestRequest extends Request {
     id: string;
   };
 }
+
+export interface ICountGuestRequest extends Request {
+  query: {
+    nameFamily?: string;
+  };
+}
+
+export interface IListGuestRequest extends Request {
+  query: {
+    nameFamily?: string;
+    limit?: string;
+    page?: string;
+  };
+}

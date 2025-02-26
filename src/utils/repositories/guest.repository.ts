@@ -90,8 +90,19 @@ export default class GuestRepository {
     return result;
   }
 
-  public async count() {
-    const result = await this.connection.guest.count();
+  public async count({
+    nameFamily,
+  }: {
+    nameFamily?: string;
+  }) {
+    const result = await this.connection.guest.count({
+      where: {
+        person: {
+          string_contains: nameFamily && nameFamily !== "" ? nameFamily : undefined,
+          mode: "insensitive",
+        },
+      },
+    });
     return result;
   }
 
@@ -127,5 +138,38 @@ export default class GuestRepository {
       confirm,
       unConfirm,
     };
+  }
+
+  public async finMany({
+    nameFamily,
+    limit,
+    skip,
+  }: { nameFamily?: string; limit: number; skip: number }) {
+    const result = await this.connection.guest.findMany({
+      where: {
+        person: {
+          string_contains: nameFamily && nameFamily !== "" ? nameFamily : undefined,
+          mode: "insensitive",
+        },
+      },
+      skip,
+      take: limit,
+      select: {
+        id: true,
+        confirmCeremony: true,
+        confirmParty: true,
+        person: true,
+        guestFamily: {
+          select: {
+            lastName: true,
+          },
+        },
+      },
+      orderBy: {
+        id: "asc",
+      },
+    });
+
+    return result;
   }
 }

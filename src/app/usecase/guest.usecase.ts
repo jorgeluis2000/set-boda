@@ -1,3 +1,7 @@
+import {
+  FIRST_PAGE_PAGINATION,
+  LIMIT_MAX_FAMILY,
+} from "@myapp-utils/constants/guest.constant";
 import type GuestRepository from "@myapp-utils/repositories/guest.repository";
 import type { TUpdateGuestProps } from "@myapp-utils/types/guest-props.type";
 
@@ -20,8 +24,10 @@ export default class GuestUseCase {
     return await this.guestRepository.delete(id);
   }
 
-  public async count() {
-    return await this.guestRepository.count();
+  public async count(data: {
+    nameFamily?: string;
+  }) {
+    return await this.guestRepository.count(data);
   }
 
   public async countConfirmCeremony() {
@@ -30,5 +36,16 @@ export default class GuestUseCase {
 
   public async countConfirmParty() {
     return await this.guestRepository.countConfirmParty();
+  }
+
+  public async finMany(data: {
+    nameFamily?: string;
+    limit?: number;
+    page?: number;
+  }) {
+    const currentPage = data.page ? data.page : FIRST_PAGE_PAGINATION;
+    const limitMax = data.limit ? data.limit : LIMIT_MAX_FAMILY;
+    const skip = (currentPage - 1) * limitMax;
+    return await this.guestRepository.finMany({ ...data, skip, limit: limitMax });
   }
 }
