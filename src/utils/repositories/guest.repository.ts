@@ -161,6 +161,7 @@ export default class GuestRepository {
         person: true,
         guestFamily: {
           select: {
+            id: true,
             lastName: true,
           },
         },
