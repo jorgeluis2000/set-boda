@@ -102,4 +102,32 @@ export default class GuestController {
       buildMessageBusinessError(error as Error, req, res);
     }
   }
+
+  public async countConfirmCeremony(req: Request, res: Response<ResponseBusiness>) {
+    try {
+      const result = await this.guestUseCase.countConfirmCeremony();
+      res.status(NormalHttpStatus.OK).json({
+        ok: true,
+        http_code: HttpStatus.OK,
+        message: req.t("api.guest.count.success"),
+        data: result,
+      });
+    } catch (error) {
+      buildMessageBusinessError(error as Error, req, res);
+    }
+  }
+
+  public async countConfirmParty(req: Request, res: Response<ResponseBusiness>) {
+    try {
+      const result = await this.guestUseCase.countConfirmParty();
+      res.status(NormalHttpStatus.OK).json({
+        ok: true,
+        http_code: HttpStatus.OK,
+        message: req.t("api.guest.count.success"),
+        data: result,
+      });
+    } catch (error) {
+      buildMessageBusinessError(error as Error, req, res);
+    }
+  }
 }

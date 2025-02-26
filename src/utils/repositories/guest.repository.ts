@@ -94,4 +94,38 @@ export default class GuestRepository {
     const result = await this.connection.guest.count();
     return result;
   }
+
+  public async countConfirmCeremony() {
+    const confirm = await this.connection.guest.count({
+      where: {
+        confirmCeremony: true,
+      },
+    });
+    const unConfirm = await this.connection.guest.count({
+      where: {
+        confirmCeremony: false,
+      },
+    });
+    return {
+      confirm,
+      unConfirm,
+    };
+  }
+
+  public async countConfirmParty() {
+    const confirm = await this.connection.guest.count({
+      where: {
+        confirmParty: true,
+      },
+    });
+    const unConfirm = await this.connection.guest.count({
+      where: {
+        confirmParty: false,
+      },
+    });
+    return {
+      confirm,
+      unConfirm,
+    };
+  }
 }

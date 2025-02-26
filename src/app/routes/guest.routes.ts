@@ -11,6 +11,14 @@ const guestUseCase = new GuestUseCase(guestRepository);
 const guestController = new GuestController(guestUseCase);
 
 GuestRouter.get("/count", guestController.countGuests.bind(guestController));
+GuestRouter.get(
+  "/count/confirm-party",
+  guestController.countGuests.bind(guestController),
+);
+GuestRouter.get(
+  "/count/confirm-ceremony",
+  guestController.countGuests.bind(guestController),
+);
 GuestRouter.post(
   "/confirm-ceremony/:id",
   guestController.confirmCeremony.bind(guestController),

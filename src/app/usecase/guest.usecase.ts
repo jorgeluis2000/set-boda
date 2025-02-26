@@ -23,4 +23,12 @@ export default class GuestUseCase {
   public async count() {
     return await this.guestRepository.count();
   }
+
+  public async countConfirmCeremony() {
+    return await this.guestRepository.countConfirmCeremony();
+  }
+
+  public async countConfirmParty() {
+    return await this.guestRepository.countConfirmParty();
+  }
 }

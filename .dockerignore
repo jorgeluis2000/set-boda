@@ -1,5 +1,6 @@
 /node_modules
 /data
+/prisma/migrations
 .git
 .gitignore
 docker-compose.*.yml
