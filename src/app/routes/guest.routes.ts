@@ -13,11 +13,11 @@ const guestController = new GuestController(guestUseCase);
 GuestRouter.get("/count", guestController.countGuests.bind(guestController));
 GuestRouter.get(
   "/count/confirm-party",
-  guestController.countGuests.bind(guestController),
+  guestController.countConfirmParty.bind(guestController),
 );
 GuestRouter.get(
   "/count/confirm-ceremony",
-  guestController.countGuests.bind(guestController),
+  guestController.countConfirmCeremony.bind(guestController),
 );
 GuestRouter.post(
   "/confirm-ceremony/:id",
