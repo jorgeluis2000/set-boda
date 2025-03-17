@@ -14,3 +14,6 @@ script.ts
 README.md
 swagger.yaml
 index.html
+script.ts
+export.ts
+migration.ts
