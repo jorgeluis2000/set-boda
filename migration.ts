@@ -3,31 +3,33 @@ import fs from "node:fs";
 
 const prisma = new PrismaClient();
 
-export interface GuestFamily {
+export type TGuestFamily = {
   id: number;
   lastName: string;
-  family: Family[];
-}
+  family: TFamily[];
+};
 
-export interface Family {
+export type TFamily = {
   id: number;
   confirmCeremony: boolean;
   confirmParty: boolean;
   isVegan: boolean;
-  person: Person;
+  person: TPerson;
   idGuestFamily: number;
-}
+};
 
-export interface Person {
+export type TPerson = {
   firstName: string;
   secondName: string;
   firstSurname: string;
   secondSurname: string;
-}
+};
 
 async function main() {
   const nameFileMigration = "migration.json";
-  const data = JSON.parse(fs.readFileSync(`./data/${nameFileMigration}`, "utf8"));
+  const data = JSON.parse(
+    fs.readFileSync(`./data/${nameFileMigration}`, "utf8"),
+  ) as TGuestFamily[];
 
   for (const family of data) {
     const newFamily = await prisma.guestFamily.create({
