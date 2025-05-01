@@ -1,6 +1,7 @@
 import type {
   TAddFamilyProps,
   TAddGuestProps,
+  TRemoveFamilyProps,
   TUpdateFamilyProps,
 } from "@myapp-utils/types/family-props.type";
 import type { PrismaClient } from "@prisma/client";
@@ -123,6 +124,15 @@ export default class FamilyRepository {
       },
       data: {
         lastName,
+      },
+    });
+    return result;
+  }
+
+  public async remove({ family }: TRemoveFamilyProps) {
+    const result = await this.connection.guestFamily.delete({
+      where: {
+        id: family,
       },
     });
     return result;

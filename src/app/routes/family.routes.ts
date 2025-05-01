@@ -15,5 +15,6 @@ FamilyRouter.get("", guestController.getFamilies.bind(guestController));
 FamilyRouter.put("/:family", guestController.update.bind(guestController));
 FamilyRouter.post("", guestController.create.bind(guestController));
 FamilyRouter.post("/:family", guestController.addGuest.bind(guestController));
+FamilyRouter.delete("/:family", guestController.removeFamily.bind(guestController));
 
 export default FamilyRouter;

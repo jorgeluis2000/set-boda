@@ -102,6 +102,25 @@ export default class FamilyController {
     }
   }
 
+  public async removeFamily(req: Request, res: Response<ResponseBusiness>) {
+    const data = req as IAddGuestRequest;
+    const { family } = data.params;
+    try {
+      const result = await this.familyUseCase.remove({
+        ...data.body,
+        family: Number(family),
+      });
+      res.status(NormalHttpStatus.OK).json({
+        ok: true,
+        http_code: HttpStatus.OK,
+        message: req.t("api.family.remove.success"),
+        data: result,
+      });
+    } catch (error) {
+      buildMessageBusinessError(error as Error, req, res);
+    }
+  }
+
   public async update(req: Request, res: Response<ResponseBusiness>) {
     const data = req as IUpdateFamilyRequest;
     const { family } = data.params;

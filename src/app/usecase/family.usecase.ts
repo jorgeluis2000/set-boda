@@ -6,6 +6,7 @@ import type FamilyRepository from "@myapp-utils/repositories/family.repository";
 import type {
   TAddFamilyProps,
   TAddGuestProps,
+  TRemoveFamilyProps,
   TUpdateFamilyProps,
 } from "@myapp-utils/types/family-props.type";
 
@@ -39,6 +40,10 @@ export default class FamilyUseCase {
 
   public async addGuest(data: TAddGuestProps) {
     return await this.familyRepository.addGuest(data);
+  }
+
+  public async remove(data: TRemoveFamilyProps) {
+    return await this.familyRepository.remove(data);
   }
 
   public async update(data: TUpdateFamilyProps) {
